@@ -1,0 +1,46 @@
+{% include 'Books/head.html' %}
+
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header">Add new book</div>
+        <div class="card-body">
+        <form action="/books/addbooks/save"method="post">
+          <div class="mb-3">
+          <label for="" class="form-label">TITLE</label>
+            <input type="text"class="form-control"name="" id=""aria-describedby="helpId"
+        placeholder="title"/>
+      <small id="helpId" class="form-text text-muted">Help text</small>
+    </div>
+    <div class="mb-3">
+  <label for="" class="form-label">location</label>
+  <input type="text"class="form-control"name="" id=""aria-describedby="helpId"
+    placeholder="location"/>
+  <small id="helpId" class="form-text text-muted">Help text</small>
+</div>
+<div class="mb-3">
+  <label for="" class="form-label">isbn</label>
+  <input type="text"class="form-control"name="" id=""aria-describedby="helpId"
+    placeholder="isbn"/>
+  <small id="helpId" class="form-text text-muted">Help text</small>
+</div>
+<div class="mb-3">
+  <label for="" class="form-label">author</label>
+  <input type="text"class="form-control"name="" id=""aria-describedby="helpId"
+    placeholder="author"/>
+  <small id="helpId" class="form-text text-muted">Help text</small>
+</div>
+<div class="mb-3">
+  <label for="" class="form-label">editorial</label>
+  <input type="text"class="form-control"name="" id=""aria-describedby="helpId"
+    placeholder="editorial"/>
+  <small id="helpId" class="form-text text-muted">Help text</small>
+</div>
+  </div>
+  <button type="submit" class="btn btn-success">Save</button>
+</form>
+  <div class="card-footer text-muted">Footer</div>
+</div>
+</div>
+</div>
+{% include 'Books/footer.html' %} 

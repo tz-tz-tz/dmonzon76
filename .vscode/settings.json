@@ -1,0 +1,25 @@
+{
+    "cSpell.words": [
+        "addbooks",
+        "CURSORCLASS",
+        "idauthor",
+        "ideditorial",
+        "pymysql",
+        "sqlalchemy"
+    ],
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "desarrollo_flask",
+            "database": "biblos12",
+            "username": "root"
+        }
+    ]
+}
