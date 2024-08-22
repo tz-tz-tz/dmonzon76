@@ -4,6 +4,7 @@
         "CURSORCLASS",
         "idauthor",
         "ideditorial",
+        "mysecretkey",
         "pymysql",
         "sqlalchemy"
     ],

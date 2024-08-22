@@ -1,0 +1,31 @@
+{% include 'Books/head.html' %}
+
+<form>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<form action="/books/addbooks" method="POST">
+
+<div class="mb-3">
+<label for="" class="form-label">TITLE</label>
+<input type="text" class="form-control" name=""id=""aria-describedby="helpId" placeholder="title"/>
+<small id="helpId" class="form-text text-muted">Help text</small>
+</div>
+
+
+<div class="mb-3">
+<label for="" class="form-label">LOCATION</label>
+<input type="text" class="form-control" name=""id=""aria-describedby="helpId" placceholder="location"/>
+<small id="helpId" class="form-text text-muted">Help text</small>
+</div>
+<div class="mb-3">
+<label for="" class="form-label">ISBN</label>
+<input type="text" class="form-control" name=""id=""aria-describedby="helpId" placceholder="isbn"/>
+<small id="helpId" class="form-text text-muted">Help text</small>
+</div>
+
+<button type="submit">
+Save
+</button>
+
+</form>
+
+{% include 'Books/footer.html' %}

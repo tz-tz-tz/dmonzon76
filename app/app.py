@@ -1,40 +1,46 @@
 from flask import Flask
 from flask import render_template
 from flask_mysqldb import MySQL
-from flask import request, redirect
-from flask_sqlalchemy import SQLAlchemy
-app=Flask(__name__)
+from flask import request, redirect, url_for
 
-db = SQLAlchemy(app)
-app.config.from_object(config)
-db = SQLAlchemy(app)
+app = Flask(__name__)
 
+#MYSQL connection
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_db'] = 'biblos12'            
+mysql = MySQL(app)
 
-mysql.init_app(app)
-
+#settings
+app.secret_key = 'mysecretkey'
 
 @app.route('/')
 def index():
     return render_template('Books/index.html')
 
-
-@app.route('/books')
-def books():
-    return render_template('Books/books.html')
-
-    sql="SELECT * FROM titles"
-
-    #connection=mysql.connection
-    #cursor=connection.cursor()
-    #cursor.execute(sql)
-    #titles=cursor.fetchall()
-    connection.commit()
-    return render_template('Books/books.html', titles=titles)
-
-
-@app.route('/books/addbooks')
+    
+@app.route("/books/addbooks", methods=['GET','POST'])
 def addbooks():
-    return render_template('Books/addbooks.html')
+    if request.method == 'POST':
+        title = request.form['title']
+        location = request.form['location']
+        isbn = request.form['isbn']
+        cur = mysql.connection.cursor()
+        cur.execute(
+            'INSERT INTO titles (title, location, isbn) VALUES (%s, %s, %s)', (title, location, isbn))
+        mysql.connection.commit()
+        return render_template('index.html')
+        
+
+#@app.route('/edit')
+def edit_book():
+    return render_template('Books/edit_book.html')
+
+
+@app.route('/delete')
+def delete_book():
+    return 'delete book'
 
 
 @app.route('/books/addbooks/save')
@@ -47,18 +53,22 @@ def addbooks_save():
     
     sql="INSERT INTO titles(title, location, isbn, idauthor, ideditorial) VALUES(%s, %s, %s)" 
     data=(title, location, isbn, idauthor, ideditorial)
-    connection = mysql.connection
+    
 
 
-    connection = mysql.connection
-    cursor = connection.cursor()
-    cursor.execute(sql, data)
-    connection.commit()
-    return redirect('/books')
     
     
     
-if __name__=='__main__':
-    app.run(debug=True)
     
+    
+    
+    
+    
+
+if __name__ == '__main__':
+    app.run(port=5000, debug=True)
+
+
+
+
     
