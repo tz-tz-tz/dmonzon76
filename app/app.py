@@ -19,8 +19,22 @@ app.secret_key = 'mysecretkey'
 def index():
     return render_template('Books/index.html')
 
+
+@app.route('/Books/books')
+def books():
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute('USE biblos12')  # Select the database
+        cur.execute('SELECT * FROM titles')
+        data = cur.fetchall()
+        #print(data)  # For debugging purposes
+        return render_template('Books/books.html')
+    except Exception as e:
+        # Handle the exception (e.g., log it or return an error page)
+        return f"Error: {str(e)}"
+
     
-@app.route("/books/addbooks", methods=['GET','POST'])
+@app.route("/Books/addbooks", methods=['GET','POST'])
 def addbooks():
     if request.method == 'POST':
         title = request.form['title']
@@ -30,29 +44,40 @@ def addbooks():
         cur.execute(
             'INSERT INTO titles (title, location, isbn) VALUES (%s, %s, %s)', (title, location, isbn))
         mysql.connection.commit()
-        return render_template('index.html')
+        return redirect(url_for('index'))
         
 
-#@app.route('/edit')
+
+
+@app.route('/edit')
 def edit_book():
     return render_template('Books/edit_book.html')
 
 
-@app.route('/delete')
-def delete_book():
-    return 'delete book'
+@app.route('/delete/<string:id>')
+def delete_book(id):
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute('USE biblos12')  # Select the database
+        cur.execute('DELETE * FROM titles WHERE id {0}'.format(id))
+        print(data)  # For debugging purposes
+        return redirect(url_for('Books/books.html'))
+    except Exception as e:
+    # Handle the exception (e.g., log it or return an error page)
+        return f"Error: {str(e)}"
+        return 'delete book'
 
 
-@app.route('/books/addbooks/save')
-def addbooks_save():
-    title = request.form['title']
-    location = request.form['location']
-    isbn = request.form['isbn']
-    author = request.form['idauthor']
-    editorial = request.form['ideditorial']
-    
-    sql="INSERT INTO titles(title, location, isbn, idauthor, ideditorial) VALUES(%s, %s, %s)" 
-    data=(title, location, isbn, idauthor, ideditorial)
+
+
+
+
+
+
+
+
+
+
     
 
 

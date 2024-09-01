@@ -1,41 +1,74 @@
 {% include 'Books/head.html' %}
-
-
 <div class="table-responsive">
-
- <table class="table table-striped table-hover table-borderless table-primary align-middle>
-
-    <thead class="table-dark"><caption>titles list
-      </caption>
-      <th>id</th>  
-      <th>title</th>
-      <th>loction</th>
-      <th>isbn</th>
-      <th>author</th>  
-      <th>editorial</th>
-      <th>actiones</th>  
-      
-    </thead>
-    <tbody class="table-group-divider">
-
-    {% for titles in titles%}
-      <tr class="">
-        <td scope="row">{{ titles['id'] }}</td>
-        <td>{{ titles['title'] }}</td>
-        <td>{{ titles['location'] }}</td>
-        <td>{{ titles['isbn'] }}</td>
-        <td>{{ titles['author'] }}</td>
-        <td>{{ titles['editorial'] }}</td>
-        
-        <td>
-        <a href="" class="btn btn-success">edit</a>
-        <a href="" class="btn btn-danger">eliminate</a>
-        </td>
-    {% endfor %}
-      
-    <tfoot>
-      
-    </tfoot>
-  </table>
+    <table class="table table-striped table-hover table-borderless table-primary align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>location</th>
+                <th>isbn</th>
+                <th>author</th>
+                <th>editorial</th>
+                <th>acciones</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for title in titles %}
+            <tr>
+                <td>{{ title['id'] }}</td>
+                <td>{{ title['title'] }}</td>
+                <td>{{ title['location'] }}</td>
+                <td>{{ title['isbn'] }}</td>
+                <td>{{ title['author'] }}</td>
+                <td>{{ title['editorial'] }}</td>
+                <td>
+                    <a href="/edit/{{ title['id'] }}" class="btn btn-success">editar</a>
+                    <a href="/delete/{{ title['id'] }}" class="btn btn-danger">eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% include 'Books/footer.html' %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,69 +1,43 @@
 {% include 'Books/head.html' %}
 
 <form>
+  <form action="/Books/addbooks/" method="POST">
+    <div class="mb-3">
+      <label for="" class="form-label">TITLE</label>
+      <input
+        type="text"
+        class="form-control"
+        name=""
+        id=""
+        aria-describedby="helpId"
+        placeholder="title"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="" class="form-label">LOCATION</label>
+      <input
+        type="text"
+        class="form-control"
+        name=""
+        id=""
+        aria-describedby="helpId"
+        placeholder="location"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="" class="form-label">ISBN</label>
+      <input
+        type="text"
+        class="form-control"
+        name=""
+        id=""
+        aria-describedby="helpId"
+        placeholder="isbn"
+      />
+    </div>
 
-<form action="/books/addbooks" method=["POST"]>
+    <button type="submit">Save</button>
+  </form>
 
-<div class="mb-3">
-  <label for="" class="form-label">TITLE</label>
-  <input type="text" class="form-control" name=""id=""aria-describedby="helpId" placeholder="title"/>
-  <small id="helpId" class="form-text text-muted">Help text</small>
-</div>
-
-
-<div class="mb-3">
- <label for="" class="form-label">LOCATION</label>
- <input type="text" class="form-control" name=""id=""aria-describedby="helpId" placeholder="location"/>
- <small id="helpId" class="form-text text-muted">Help text</small>
-</div>
-<div class="mb-3">
- <label for="" class="form-label">ISBN</label>
- <input type="text" class="form-control" name=""id=""aria-describedby="helpId" placeholder="isbn"/>
- <small id="helpId" class="form-text text-muted">Help text</small>
-</div>
-
-<button type="submit">Save</button>
-
+  {% include 'Books/footer.html' %}
 </form>
-
-{% include 'Books/footer.html' %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
