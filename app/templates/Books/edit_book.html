@@ -1,24 +1,24 @@
 {% include 'Books/head.html' %}
 
-<form>
+<form action="/update" method="POST">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <form action="/books/addbooks" method="POST">
 
 <div class="mb-3">
 <label for="" class="form-label">TITLE</label>
-<input type="text" class="form-control" name=""id=""aria-describedby="helpId" placeholder="title"/>
+<input type="text" class="form-control" title=""id=""aria-describedby="helpId" placeholder="{{title.1}}"/>
 <small id="helpId" class="form-text text-muted">Help text</small>
 </div>
 
 
 <div class="mb-3">
 <label for="" class="form-label">LOCATION</label>
-<input type="text" class="form-control" name=""id=""aria-describedby="helpId" placceholder="location"/>
+<input type="text" class="form-control" location=""id=""aria-describedby="helpId" placceholder="{{title.2}}"/>
 <small id="helpId" class="form-text text-muted">Help text</small>
 </div>
 <div class="mb-3">
 <label for="" class="form-label">ISBN</label>
-<input type="text" class="form-control" name=""id=""aria-describedby="helpId" placceholder="isbn"/>
+<input type="text" class="form-control" isbn=""id=""aria-describedby="helpId" placceholder="{{title.3}}"/>
 <small id="helpId" class="form-text text-muted">Help text</small>
 </div>
 
