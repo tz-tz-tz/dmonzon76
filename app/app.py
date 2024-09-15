@@ -46,13 +46,17 @@ def addbooks():
         return redirect(url_for('index'))
 
 
-@app.route('/edit_book/<id>')
-def edit_book(id):
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM users WHERE id = %s", (id,))
-    data = cur.fetchall()
-    print(data[0])
-    return render_template('Books/edit_book.html', book = data[0])
+@app.route('/Books/edit_book/<id>')
+def edit_book( id):
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT title, location , isbn FROM titles WHERE id = %s", (id,))
+        title = cur.fetchone()
+        mysql.connection.commit()    
+        return render_template('Books/edit_book.html', title=title)
+    except Exception as e:
+        # Handle the exception (e.g., log it or return an error page)
+        return f"Error: {str(e)}"
 
 @app.route('/update/<id>')
 def update_title(id):
@@ -74,12 +78,12 @@ def update_title(id):
         return render_template('Books/books.html', titles=data)
         
 
-@app.route("/delete_book/<int:id>", methods=['GET', 'POST'])
+@app.route("/delete_book/<id>", methods=['GET', 'POST'])
 def delete_book(id):
     try:
         cur = mysql.connection.cursor()
         cur.execute('USE biblos12')  # Select the database
-        cur.execute('DELETE FROM titles WHERE idtitles = id', (id))
+        cur.execute('DELETE FROM titles WHERE id=%s',(id,))
         mysql.connection.commit()
 
         # Fetch updated data (if needed)

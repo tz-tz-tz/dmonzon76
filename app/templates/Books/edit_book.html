@@ -1,31 +1,74 @@
 {% include 'Books/head.html' %}
+<form>
+{% block titulo %}
+EDIT BOOK
+{% endblock %}
+{% block content %}
+<div classs="row">
+    <div class="col 4"></div>
+    <div class="col 4"></div>
+<form action="/Books/edit_book/{{ id }}" method="POST">
+    <input type="hidden" name="id" value="{{ id }}">
 
-<form action="/update" method="POST">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<form action="/books/addbooks" method="POST">
-
-<div class="mb-3">
-<label for="" class="form-label">TITLE</label>
-<input type="text" class="form-control" title=""id=""aria-describedby="helpId" placeholder="{{title.1}}"/>
-<small id="helpId" class="form-text text-muted">Help text</small>
-</div>
-
-
-<div class="mb-3">
-<label for="" class="form-label">LOCATION</label>
-<input type="text" class="form-control" location=""id=""aria-describedby="helpId" placceholder="{{title.2}}"/>
-<small id="helpId" class="form-text text-muted">Help text</small>
-</div>
-<div class="mb-3">
-<label for="" class="form-label">ISBN</label>
-<input type="text" class="form-control" isbn=""id=""aria-describedby="helpId" placceholder="{{title.3}}"/>
-<small id="helpId" class="form-text text-muted">Help text</small>
-</div>
-
-<button type="submit">
-Save
-</button>
-
-</form>
-
+    <div class="mb-3">
+        <label for="title" class="form-label">TITLE</label>
+        <input value="{{ title }}" required type="text" class="input" placeholder="Title" name="title" id="title">
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label">LOCATION</label>
+        <input value="{{ location }}" required type="text" class="input" placeholder="location" name="location" id="location">
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label">ISBN</label>
+        <input value="{{ isbn }}" required type="text" class="input" placeholder="isbn" name="isbn" id="isbn">
+    </div>
+    <button type="submit">
+        Save
+    </button>
+    {% endblock %}
+</form>    
+    
+        
 {% include 'Books/footer.html' %}
+
+    <div class="col 4"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
