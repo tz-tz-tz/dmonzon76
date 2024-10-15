@@ -1,43 +1,27 @@
 {% include 'Books/head.html' %}
 
 <form>
-  <form action="/Books/addbooks/" method="POST">
+  {% block content %}
+ADD BOOK
+{% endblock %}
+{% block content %}
+  <form action="/Books/addbooks" methods =["POST"])
     <div class="mb-3">
-      <label for="" class="form-label">TITLE</label>
-      <input
-        type="text"
-        class="form-control"
-        name=""
-        id=""
-        aria-describedby="helpId"
-        placeholder="title"
-      />
+      <label form="class=form-label">TITLE</label>
+      <input type="text" class="form-control" name="title"placeholder="title"/>
     </div>
     <div class="mb-3">
-      <label for="" class="form-label">LOCATION</label>
-      <input
-        type="text"
-        class="form-control"
-        name=""
-        id=""
-        aria-describedby="helpId"
-        placeholder="location"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="" class="form-label">ISBN</label>
-      <input
-        type="text"
-        class="form-control"
-        name=""
-        id=""
-        aria-describedby="helpId"
-        placeholder="isbn"
-      />
-    </div>
+  <label form="class=form-label">LOCATION</label>
+  <input type="text" class="form-control" name="location"placeholder="location"/>
+</div>
+<div class="mb-3">
+  <label form="class=form-label">ISBN</label>
+  <input type="text" class="form-control" name="isbn"placeholder="isbn"/>
+</div>
+    
 
-    <button type="submit">Save</button>
+<button type="submit">Save</button>
   </form>
-
+{% endblock%}
   {% include 'Books/footer.html' %}
 </form>

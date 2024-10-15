@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_mysqldb import MySQL
+import os
 
 app = Flask(__name__)
 
@@ -23,13 +24,11 @@ def index():
 def books():
     try:
         cur = mysql.connection.cursor()
-        #cur.execute('USE biblos12')  # Select the database
         cur.execute('SELECT * FROM titles')
         data = cur.fetchall()
         print(data)  # For debugging purposes
         return render_template('Books/books.html', titles=data)
     except Exception as e:
-        # Handle the exception (e.g., log it or return an error page)
         return f"Error: {str(e)}"
 
 
@@ -43,65 +42,58 @@ def addbooks():
         cur.execute(
             'INSERT INTO titles (title, location, isbn) VALUES (%s, %s, %s)', (title, location, isbn))
         mysql.connection.commit()
-        return redirect(url_for('index'))
+        return render_template('Books/books.html')
 
 
-@app.route('/Books/edit_book/<id>')
-def edit_book( id):
+@app.route('/Books/edit_book/<int:id>', methods=['GET', 'POST'])
+def edit_book(id):
     try:
         cur = mysql.connection.cursor()
-        cur.execute("SELECT title, location , isbn FROM titles WHERE id = %s", (id,))
-        title = cur.fetchone()
-        mysql.connection.commit()    
-        return render_template('Books/edit_book.html', title=title)
+        cur.execute(
+            'SELECT title, location, isbn FROM titles WHERE id=%s', (id,))
+        data = cur.fetchone()
+        mysql.connection.commit()
+        return render_template('Books/edit_book.html', title=data)
     except Exception as e:
-        # Handle the exception (e.g., log it or return an error page)
         return f"Error: {str(e)}"
 
-@app.route('/update/<id>')
+
+@app.route('/update/<id>', methods=['POST'])
 def update_title(id):
     if request.method == 'POST':
         title = request.form['title']
         location = request.form['location']
         isbn = request.form['isbn']
         cur = mysql.connection.cursor()
-        data = cur.fetchall()
         cur.execute("""
         UPDATE titles
-        SET title = %s
-            location = %s
+        SET title = %s,
+            location = %s,
             isbn = %s
         WHERE id = %s    
-        """,(title, location, isbn, id))
+        """, (title, location, isbn, id))
         mysql.connection.commit()
-        print(data)  # For debugging purposes
-        return render_template('Books/books.html', titles=data)
-        
+        return redirect(url_for("Books/books"))
+
 
 @app.route("/delete_book/<id>", methods=['GET', 'POST'])
 def delete_book(id):
     try:
         cur = mysql.connection.cursor()
-        cur.execute('USE biblos12')  # Select the database
-        cur.execute('DELETE FROM titles WHERE id=%s',(id,))
+        cur.execute('DELETE FROM titles WHERE id=%s', (id,))
         mysql.connection.commit()
 
-        # Fetch updated data (if needed)
         cur.execute('SELECT * FROM titles')
         data = cur.fetchall()
         print(data)  # For debugging purposes
 
         return render_template('Books/books.html', titles=data)
     except Exception as e:
-        # Handle the exception (e.g., log it or return an error page)
         return f"Error: {str(e)}"
 
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
-
-
-
 
 
 

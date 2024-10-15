@@ -11,7 +11,7 @@
                 <th>isbn</th>
                 <th>author</th>
                 <th>editorial</th>
-                <th>acciones</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -24,7 +24,7 @@
                 <td>{{ title.4 }}</td>
                 <td>{{ title.5 }}</td>
                 <td>
-                    <a href='/Books/edit_book/<id>' class="btn btn-success">edit</a>
+                    <a href="/Books/edit_book/{{ title.0}}" class="btn btn-success">edit</a>
                     <a href="/delete_book/{{title.0}}"class="btn btn-danger btn-delete">Delete</a>
                     
                 </td>
