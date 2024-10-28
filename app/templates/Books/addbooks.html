@@ -1,10 +1,6 @@
 {% include 'Books/head.html' %}
 
 <form>
-  {% block content %}
-ADD BOOK
-{% endblock %}
-{% block content %}
   <form action="/Books/addbooks" methods =["POST"])
     <div class="mb-3">
       <label form="class=form-label">TITLE</label>
@@ -18,10 +14,8 @@ ADD BOOK
   <label form="class=form-label">ISBN</label>
   <input type="text" class="form-control" name="isbn"placeholder="isbn"/>
 </div>
-    
 
 <button type="submit">Save</button>
   </form>
-{% endblock%}
+
   {% include 'Books/footer.html' %}
-</form>
